@@ -1,4 +1,3 @@
-# Stage 0, "build-stage", based on Node.js, to build and compile the frontend
 FROM node:20 AS build-stage
 
 WORKDIR /app
@@ -11,13 +10,22 @@ COPY ./ /app/
 
 ARG VITE_API_URL=${VITE_API_URL}
 
+# Usa lo script di build definito nel package.json
 RUN npm run build
 
+# Stage 2: usa un server web leggero per servire i file statici
+FROM node:20-alpine
 
-# Stage 1, based on Nginx, to have only the compiled app, ready for production with Nginx
-FROM nginx:1
+WORKDIR /app
 
-COPY --from=build-stage /app/dist/ /usr/share/nginx/html
+# Installa serve per hosting di file statici
+RUN npm install -g serve
 
-COPY ./nginx.conf /etc/nginx/conf.d/default.conf
-COPY ./nginx-backend-not-found.conf /etc/nginx/extra-conf.d/backend-not-found.conf
+# Copia solo i file di build dal primo stage
+COPY --from=build-stage /app/dist /app
+
+# Esponi la porta 5174
+EXPOSE 5174
+
+# Avvia il server sulla porta 5174
+CMD ["serve", "-s", ".", "-l", "5174"]
