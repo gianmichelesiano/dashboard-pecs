@@ -1,0 +1,26 @@
+http:
+  routers:
+    dashboard-pecs-router:
+      rule: "Host(`dashboard-pecs.speats.ch`)"
+      service: dashboard-pecs-service
+      entryPoints:
+        - https
+      tls:
+        certResolver: le
+    dashboard-pecs-router-http:
+      rule: "Host(`dashboard-pecs.speats.ch`)"
+      entryPoints:
+        - http
+      middlewares:
+        - https-redirect
+      service: dashboard-pecs-service
+  services:
+    dashboard-pecs-service:
+      loadBalancer:
+        servers:
+          - url: "http://frontend-pecs:5174"
+  middlewares:
+    https-redirect:
+      redirectScheme:
+        scheme: https
+        permanent: true
