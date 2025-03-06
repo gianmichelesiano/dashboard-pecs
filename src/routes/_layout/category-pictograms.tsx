@@ -1,4 +1,4 @@
-import React from "react";
+// React è importato automaticamente con JSX
 import {
   Container,
   EmptyState,
@@ -58,7 +58,7 @@ function PictogramsGrid() {
   const navigate = useNavigate({ from: Route.fullPath });
   const { categoryId, page } = Route.useSearch();
 
-  const { data: categoryData, isLoading: isCategoryLoading } = useQuery({
+  const { isLoading: isCategoryLoading } = useQuery({
     ...getCategoryQueryOptions({ categoryId }),
   });
 

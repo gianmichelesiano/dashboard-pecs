@@ -1,10 +1,8 @@
-import React from "react";
 import {
   Container,
   EmptyState,
   Flex,
   Heading,
-  Table,
   VStack,
 } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";

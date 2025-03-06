@@ -1,4 +1,4 @@
-import React from "react";
+// React è importato automaticamente con JSX
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { type SubmitHandler, useForm } from "react-hook-form";
 

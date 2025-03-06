@@ -1,4 +1,4 @@
-import React from "react";
+// React è importato automaticamente con JSX
 import { Button, DialogTitle, Text } from "@chakra-ui/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
