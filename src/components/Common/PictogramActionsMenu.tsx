@@ -1,4 +1,4 @@
-import React from "react";
+// React è importato automaticamente con JSX
 import { IconButton } from "@chakra-ui/react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { MenuContent, MenuRoot, MenuTrigger } from "../ui/menu";

@@ -1,4 +1,4 @@
-import React from "react";
+// React è importato automaticamente con JSX
 import {
   Button,
   ButtonGroup,
