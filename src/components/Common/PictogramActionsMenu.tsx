@@ -6,6 +6,8 @@ import { MenuContent, MenuRoot, MenuTrigger } from "../ui/menu";
 import type { PictogramPublic } from "../../client/types/pictogram";
 import DeletePictogram from "../Pictograms/DeletePictogram";
 import EditPictogram from "../Pictograms/EditPictogram";
+import ShowCategory from "../Pictograms/ShowCategory";
+
 
 interface PictogramActionsMenuProps {
   pictogram: PictogramPublic;
@@ -20,7 +22,8 @@ export const PictogramActionsMenu = ({ pictogram }: PictogramActionsMenuProps) =
         </IconButton>
       </MenuTrigger>
       <MenuContent>
-        <EditPictogram pictogram={pictogram} />
+        {/* <EditPictogram pictogram={pictogram} /> */}
+        <ShowCategory id={pictogram.id} />
         <DeletePictogram id={pictogram.id} />
       </MenuContent>
     </MenuRoot>
