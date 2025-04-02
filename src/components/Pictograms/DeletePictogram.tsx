@@ -30,6 +30,7 @@ const DeletePictogram = ({ id }: { id: string }) => {
   const deletePictogram = async (id: string) => {
     await PictogramService.deletePictogram({ id: id });
   };
+  console.log(id);
 
   const mutation = useMutation({
     mutationFn: deletePictogram,

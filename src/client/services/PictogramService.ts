@@ -1,6 +1,6 @@
-import type { CancelablePromise } from "../core/CancelablePromise";
-import { OpenAPI } from "../core/OpenAPI";
-import { request as __request } from "../core/request";
+import type { CancelablePromise } from "../core/CancelablePromise"
+import { OpenAPI } from "../core/OpenAPI"
+import { request as __request } from "../core/request"
 import {
   PictogramsReadPictogramsData,
   PictogramsReadPictogramsResponse,
@@ -12,7 +12,9 @@ import {
   PictogramsUpdatePictogramResponse,
   PictogramsDeletePictogramData,
   PictogramsDeletePictogramResponse,
-} from "../types/pictogram";
+} from "../types/pictogram"
+
+import { CategoryResponse } from "../types/category"
 
 export class PictogramService {
   /**
@@ -26,7 +28,7 @@ export class PictogramService {
    * @throws ApiError
    */
   public static readPictograms(
-    data: PictogramsReadPictogramsData = {}
+    data: PictogramsReadPictogramsData = {},
   ): CancelablePromise<PictogramsReadPictogramsResponse> {
     return __request(OpenAPI, {
       method: "GET",
@@ -39,7 +41,7 @@ export class PictogramService {
       errors: {
         422: "Validation Error",
       },
-    });
+    })
   }
 
   /**
@@ -51,7 +53,7 @@ export class PictogramService {
    * @throws ApiError
    */
   public static createPictogram(
-    data: PictogramsCreatePictogramData
+    data: PictogramsCreatePictogramData,
   ): CancelablePromise<PictogramsCreatePictogramResponse> {
     return __request(OpenAPI, {
       method: "POST",
@@ -61,7 +63,7 @@ export class PictogramService {
       errors: {
         422: "Validation Error",
       },
-    });
+    })
   }
 
   /**
@@ -73,7 +75,7 @@ export class PictogramService {
    * @throws ApiError
    */
   public static readPictogram(
-    data: PictogramsReadPictogramData
+    data: PictogramsReadPictogramData,
   ): CancelablePromise<PictogramsReadPictogramResponse> {
     return __request(OpenAPI, {
       method: "GET",
@@ -84,7 +86,30 @@ export class PictogramService {
       errors: {
         422: "Validation Error",
       },
-    });
+    })
+  }
+
+  /**
+   * Show Category
+   * Get category by PECS ID.
+   * @param data The data for the request.
+   * @param data.pecsId The ID of the PECS
+   * @returns CategoryResponse Successful Response
+   * @throws ApiError
+   */
+  public static showCategory(data: {
+    pecsId: string
+  }): CancelablePromise<CategoryResponse> {
+    return __request(OpenAPI, {
+      method: "GET",
+      url: "/api/v1/pecs/{pecsId}/category",
+      path: {
+        pecsId: data.pecsId,
+      },
+      errors: {
+        422: "Validation Error",
+      },
+    })
   }
 
   /**
@@ -97,7 +122,7 @@ export class PictogramService {
    * @throws ApiError
    */
   public static updatePictogram(
-    data: PictogramsUpdatePictogramData
+    data: PictogramsUpdatePictogramData,
   ): CancelablePromise<PictogramsUpdatePictogramResponse> {
     return __request(OpenAPI, {
       method: "PUT",
@@ -110,7 +135,7 @@ export class PictogramService {
       errors: {
         422: "Validation Error",
       },
-    });
+    })
   }
 
   /**
@@ -122,7 +147,7 @@ export class PictogramService {
    * @throws ApiError
    */
   public static deletePictogram(
-    data: PictogramsDeletePictogramData
+    data: PictogramsDeletePictogramData,
   ): CancelablePromise<PictogramsDeletePictogramResponse> {
     return __request(OpenAPI, {
       method: "DELETE",
@@ -133,6 +158,6 @@ export class PictogramService {
       errors: {
         422: "Validation Error",
       },
-    });
+    })
   }
 }

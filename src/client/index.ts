@@ -4,9 +4,3 @@ export { CancelablePromise, CancelError } from "./core/CancelablePromise"
 export { OpenAPI, type OpenAPIConfig } from "./core/OpenAPI"
 export * from "./sdk.gen"
 export * from "./types.gen"
-
-// Custom exports
-export * from "./types/category"
-export * from "./types/pictogram"
-export { CategoryService } from "./services/CategoryService"
-export { PictogramService } from "./services/PictogramService"

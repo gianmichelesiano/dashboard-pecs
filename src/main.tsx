@@ -9,6 +9,10 @@ import React, { StrictMode } from "react"
 import ReactDOM from "react-dom/client"
 import { routeTree } from "./routeTree.gen"
 
+// Import i18n configuration
+import i18n from "./i18n/i18n"
+import { UsersService } from "./client"
+
 import { ApiError, OpenAPI } from "./client"
 import { CustomProvider } from "./components/ui/provider"
 
@@ -31,6 +35,19 @@ const queryClient = new QueryClient({
     onError: handleApiError,
   }),
 })
+
+// Initialize language from user preferences if available
+if (localStorage.getItem("access_token")) {
+  UsersService.readUserMe()
+    .then(user => {
+      if (user.lang) {
+        i18n.changeLanguage(user.lang)
+      }
+    })
+    .catch(error => {
+      console.error("Failed to fetch user language preference:", error)
+    })
+}
 
 const router = createRouter({ routeTree })
 declare module "@tanstack/react-router" {

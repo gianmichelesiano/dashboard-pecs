@@ -18,8 +18,14 @@ import { Route as LoginImport } from './routes/login'
 import { Route as LayoutImport } from './routes/_layout'
 import { Route as LayoutIndexImport } from './routes/_layout/index'
 import { Route as LayoutSettingsImport } from './routes/_layout/settings'
+import { Route as LayoutSequencesImport } from './routes/_layout/sequences'
+import { Route as LayoutPhrasesImport } from './routes/_layout/phrases'
 import { Route as LayoutItemsImport } from './routes/_layout/items'
+import { Route as LayoutGroupSequencesImport } from './routes/_layout/group-sequences'
+import { Route as LayoutCustomPecsImport } from './routes/_layout/custom-pecs'
+import { Route as LayoutCollectionsImport } from './routes/_layout/collections'
 import { Route as LayoutCategoryPictogramsImport } from './routes/_layout/category-pictograms'
+import { Route as LayoutCategoriesByLanguageImport } from './routes/_layout/categories-by-language'
 import { Route as LayoutCategoriesImport } from './routes/_layout/categories'
 import { Route as LayoutAdminImport } from './routes/_layout/admin'
 
@@ -60,8 +66,33 @@ const LayoutSettingsRoute = LayoutSettingsImport.update({
   getParentRoute: () => LayoutRoute,
 } as any)
 
+const LayoutSequencesRoute = LayoutSequencesImport.update({
+  path: '/sequences',
+  getParentRoute: () => LayoutRoute,
+} as any)
+
+const LayoutPhrasesRoute = LayoutPhrasesImport.update({
+  path: '/phrases',
+  getParentRoute: () => LayoutRoute,
+} as any)
+
 const LayoutItemsRoute = LayoutItemsImport.update({
   path: '/items',
+  getParentRoute: () => LayoutRoute,
+} as any)
+
+const LayoutGroupSequencesRoute = LayoutGroupSequencesImport.update({
+  path: '/group-sequences',
+  getParentRoute: () => LayoutRoute,
+} as any)
+
+const LayoutCustomPecsRoute = LayoutCustomPecsImport.update({
+  path: '/custom-pecs',
+  getParentRoute: () => LayoutRoute,
+} as any)
+
+const LayoutCollectionsRoute = LayoutCollectionsImport.update({
+  path: '/collections',
   getParentRoute: () => LayoutRoute,
 } as any)
 
@@ -69,6 +100,13 @@ const LayoutCategoryPictogramsRoute = LayoutCategoryPictogramsImport.update({
   path: '/category-pictograms',
   getParentRoute: () => LayoutRoute,
 } as any)
+
+const LayoutCategoriesByLanguageRoute = LayoutCategoriesByLanguageImport.update(
+  {
+    path: '/categories-by-language',
+    getParentRoute: () => LayoutRoute,
+  } as any,
+)
 
 const LayoutCategoriesRoute = LayoutCategoriesImport.update({
   path: '/categories',
@@ -112,12 +150,36 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutCategoriesImport
       parentRoute: typeof LayoutImport
     }
+    '/_layout/categories-by-language': {
+      preLoaderRoute: typeof LayoutCategoriesByLanguageImport
+      parentRoute: typeof LayoutImport
+    }
     '/_layout/category-pictograms': {
       preLoaderRoute: typeof LayoutCategoryPictogramsImport
       parentRoute: typeof LayoutImport
     }
+    '/_layout/collections': {
+      preLoaderRoute: typeof LayoutCollectionsImport
+      parentRoute: typeof LayoutImport
+    }
+    '/_layout/custom-pecs': {
+      preLoaderRoute: typeof LayoutCustomPecsImport
+      parentRoute: typeof LayoutImport
+    }
+    '/_layout/group-sequences': {
+      preLoaderRoute: typeof LayoutGroupSequencesImport
+      parentRoute: typeof LayoutImport
+    }
     '/_layout/items': {
       preLoaderRoute: typeof LayoutItemsImport
+      parentRoute: typeof LayoutImport
+    }
+    '/_layout/phrases': {
+      preLoaderRoute: typeof LayoutPhrasesImport
+      parentRoute: typeof LayoutImport
+    }
+    '/_layout/sequences': {
+      preLoaderRoute: typeof LayoutSequencesImport
       parentRoute: typeof LayoutImport
     }
     '/_layout/settings': {
@@ -137,8 +199,14 @@ export const routeTree = rootRoute.addChildren([
   LayoutRoute.addChildren([
     LayoutAdminRoute,
     LayoutCategoriesRoute,
+    LayoutCategoriesByLanguageRoute,
     LayoutCategoryPictogramsRoute,
+    LayoutCollectionsRoute,
+    LayoutCustomPecsRoute,
+    LayoutGroupSequencesRoute,
     LayoutItemsRoute,
+    LayoutPhrasesRoute,
+    LayoutSequencesRoute,
     LayoutSettingsRoute,
     LayoutIndexRoute,
   ]),

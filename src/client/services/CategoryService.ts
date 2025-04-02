@@ -1,6 +1,6 @@
-import type { CancelablePromise } from "../core/CancelablePromise";
-import { OpenAPI } from "../core/OpenAPI";
-import { request as __request } from "../core/request";
+import type { CancelablePromise } from "../core/CancelablePromise"
+import { OpenAPI } from "../core/OpenAPI"
+import { request as __request } from "../core/request"
 import {
   CategoriesReadCategoriesData,
   CategoriesReadCategoriesResponse,
@@ -12,7 +12,9 @@ import {
   CategoriesUpdateCategoryResponse,
   CategoriesDeleteCategoryData,
   CategoriesDeleteCategoryResponse,
-} from "../types/category";
+  CategoriesReadCategoriesByLanguageData,
+  CategoriesReadCategoriesByLanguageResponse,
+} from "../types/category"
 
 export class CategoryService {
   /**
@@ -25,7 +27,7 @@ export class CategoryService {
    * @throws ApiError
    */
   public static readCategories(
-    data: CategoriesReadCategoriesData = {}
+    data: CategoriesReadCategoriesData = {},
   ): CancelablePromise<CategoriesReadCategoriesResponse> {
     return __request(OpenAPI, {
       method: "GET",
@@ -37,7 +39,7 @@ export class CategoryService {
       errors: {
         422: "Validation Error",
       },
-    });
+    })
   }
 
   /**
@@ -49,7 +51,7 @@ export class CategoryService {
    * @throws ApiError
    */
   public static createCategory(
-    data: CategoriesCreateCategoryData
+    data: CategoriesCreateCategoryData,
   ): CancelablePromise<CategoriesCreateCategoryResponse> {
     return __request(OpenAPI, {
       method: "POST",
@@ -59,7 +61,7 @@ export class CategoryService {
       errors: {
         422: "Validation Error",
       },
-    });
+    })
   }
 
   /**
@@ -71,7 +73,7 @@ export class CategoryService {
    * @throws ApiError
    */
   public static readCategory(
-    data: CategoriesReadCategoryData
+    data: CategoriesReadCategoryData,
   ): CancelablePromise<CategoriesReadCategoryResponse> {
     return __request(OpenAPI, {
       method: "GET",
@@ -82,7 +84,7 @@ export class CategoryService {
       errors: {
         422: "Validation Error",
       },
-    });
+    })
   }
 
   /**
@@ -95,7 +97,7 @@ export class CategoryService {
    * @throws ApiError
    */
   public static updateCategory(
-    data: CategoriesUpdateCategoryData
+    data: CategoriesUpdateCategoryData,
   ): CancelablePromise<CategoriesUpdateCategoryResponse> {
     return __request(OpenAPI, {
       method: "PUT",
@@ -108,7 +110,7 @@ export class CategoryService {
       errors: {
         422: "Validation Error",
       },
-    });
+    })
   }
 
   /**
@@ -120,7 +122,7 @@ export class CategoryService {
    * @throws ApiError
    */
   public static deleteCategory(
-    data: CategoriesDeleteCategoryData
+    data: CategoriesDeleteCategoryData,
   ): CancelablePromise<CategoriesDeleteCategoryResponse> {
     return __request(OpenAPI, {
       method: "DELETE",
@@ -131,6 +133,60 @@ export class CategoryService {
       errors: {
         422: "Validation Error",
       },
-    });
+    })
+  }
+
+  /**
+   * Read Categories By Language
+   * Retrieve categories by language code.
+   * @param data The data for the request.
+   * @param data.code The language code
+   * @returns Categories with translations Successful Response
+   * @throws ApiError
+   */
+  public static readCategoriesByLanguage(
+    data: CategoriesReadCategoriesByLanguageData,
+  ): CancelablePromise<CategoriesReadCategoriesByLanguageResponse> {
+    return __request(OpenAPI, {
+      method: "GET",
+      url: "/api/v1/categories/language/{code}",
+      path: {
+        code: data.code,
+      },
+      errors: {
+        422: "Validation Error",
+      },
+    })
+  }
+
+  /**
+   * Read Category PECS
+   * Retrieve PECS for a specific category.
+   * @param data The data for the request.
+   * @param data.id The category ID
+   * @param data.skip Optional skip parameter
+   * @param data.limit Optional limit parameter
+   * @returns PECS for the category Successful Response
+   * @throws ApiError
+   */
+  public static readCategoryPecs(data: {
+    id: string
+    skip?: number
+    limit?: number
+  }): CancelablePromise<any> {
+    return __request(OpenAPI, {
+      method: "GET",
+      url: "/api/v1/categories/{id}/pecs",
+      path: {
+        id: data.id,
+      },
+      query: {
+        skip: data.skip,
+        limit: data.limit,
+      },
+      errors: {
+        422: "Validation Error",
+      },
+    })
   }
 }

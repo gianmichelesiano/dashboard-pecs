@@ -1,6 +1,13 @@
 import type { ApiError } from "./client"
 import useCustomToast from "./hooks/useCustomToast"
 
+/**
+ * Combines multiple class names
+ */
+export function cn(...inputs: string[]) {
+  return inputs.filter(Boolean).join(' ')
+}
+
 export const emailPattern = {
   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
   message: "Invalid email address",
