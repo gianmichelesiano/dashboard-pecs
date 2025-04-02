@@ -10,8 +10,8 @@ COPY ./ /app/
 
 ARG VITE_API_URL=${VITE_API_URL}
 
-# Usa lo script di build definito nel package.json
-RUN npm run build
+
+RUN NODE_OPTIONS="--max-old-space-size=4096" npm run build
 
 # Stage 2: usa un server web leggero per servire i file statici
 FROM node:20-alpine
