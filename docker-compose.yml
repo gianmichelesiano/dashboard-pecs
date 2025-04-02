@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 version: "3.8"
 services:
   frontend-pecs:
@@ -7,6 +8,12 @@ services:
     networks:
       - traefik-public
       - default
+=======
+version: '3.8'
+
+services:
+  frontend:
+>>>>>>> 777161ae2beea8db5ffb57ed4d5d12733cf7e6d2
     build:
       context: ./
       args:
@@ -14,6 +21,7 @@ services:
         - NODE_ENV=production
     ports:
       - "5174:5174"
+<<<<<<< HEAD
     labels:
       - traefik.enable=true
       - traefik.docker.network=traefik-public
@@ -32,3 +40,8 @@ networks:
     external: true
   default:
     driver: bridge
+=======
+    restart: always
+    networks:
+      - default
+>>>>>>> 777161ae2beea8db5ffb57ed4d5d12733cf7e6d2
